@@ -40,7 +40,8 @@ public class Main {
 		return
 			input
 			.stream()
-			.mapToInt( s -> checker.accept( s ) ? 1 : 0 )
+			.filter( checker::accept )
+			.mapToInt( s -> 1 )
 			.sum();
 	}
 }
