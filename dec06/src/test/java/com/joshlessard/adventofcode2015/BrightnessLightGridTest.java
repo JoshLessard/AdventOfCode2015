@@ -23,43 +23,54 @@ public class BrightnessLightGridTest {
 	}
 	
 	@Test
-	public void turningOn2x2GridOfLightsIncreasesBrightnessBy4() {
+	public void turningOnLightIncreasesBrightnessBy1() {
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 1, y + 1 ) );
-		assertEquals( 4, grid.getBrightness() );
+		grid.turnOn( x, y );
+		assertEquals( 1, grid.getBrightness() );
+		
+		grid.turnOn( x, y );
+		assertEquals( 2, grid.getBrightness() );
 	}
 	
 	@Test
-	public void turningOff5x5GridOfLightsDecreasesBrightnessBy4() {
+	public void turningOffLightDecreasesBrightnessBy1() {
+		turnOnAllLights();
 		turnOnAllLights();
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_OFF, new Point( x, y ), new Point( x + 4, y + 4 ) );
-		assertEquals( ROWS * COLUMNS - 25, grid.getBrightness() );
+		grid.turnOff( x, y );
+		assertEquals( 2 * ROWS * COLUMNS - 1, grid.getBrightness() );
+		
+		grid.turnOff( x, y );
+		assertEquals( 2 * ROWS * COLUMNS - 2, grid.getBrightness() );
 	}
 	
 	@Test
-	public void turningOffUnlitLightsDoesNotDecreaseBrightness() {
+	public void turningOffUnlitLightDoesNothing() {
+		turnOnAllLights();
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 4, y + 4 ) );
-		assertEquals( 25, grid.getBrightness() );
+		grid.turnOff( x, y );
+		assertEquals( ROWS * COLUMNS - 1, grid.getBrightness() );
 		
-		grid.changeLights( Command.TURN_OFF, new Point( x + 3, y + 3 ), new Point( x + 5, y + 5 ) );
-		assertEquals( 25 - 4, grid.getBrightness() );
+		grid.turnOff( x, y );
+		assertEquals( ROWS * COLUMNS - 1, grid.getBrightness() );
 	}
 	
 	@Test
-	public void toggling3x3GridOfLightsIncreasesBrightnessBy18() {
+	public void togglingLightIncreasesBrightnessBy2() {
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TOGGLE, new Point( x, y ), new Point( x + 2, y + 2 ) );
-		assertEquals( 18, grid.getBrightness() );
+		grid.toggle( x, y );
+		assertEquals( 2, grid.getBrightness() );
+		
+		grid.toggle( x, y );
+		assertEquals( 4, grid.getBrightness() );
 	}
 
 	private int getRandomCoordinate() {

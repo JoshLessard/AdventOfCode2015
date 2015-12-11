@@ -1,6 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
-public class BrightnessLightGrid implements LightGrid {
+public class BrightnessLightGrid extends LightGrid {
 	
 	private int[][] grid;
 	private int brightness;
@@ -9,31 +9,27 @@ public class BrightnessLightGrid implements LightGrid {
 		grid = new int[rows][columns];
 	}
 
+	public int getBrightness() {
+		return brightness;
+	}
+
 	@Override
-	public void changeLights( Command command, Point topLeft, Point bottomRight ) {
-		for ( int x = topLeft.x; x <= bottomRight.x; ++x ) {
-			for ( int y = topLeft.y; y <= bottomRight.y; ++y ) {
-				switch ( command ) {
-					case TURN_ON:
-						brightness += 1;
-						grid[x][y] += 1;
-						break;
-					case TURN_OFF:
-						if ( grid[x][y] > 0 ) {
-							brightness -= 1;
-							grid[x][y] -= 1;
-						}
-						break;
-					case TOGGLE:
-						brightness += 2;
-						grid[x][y] += 2;
-						break;
-				}
-			}
+	protected void turnOn( int x, int y ) {
+		brightness += 1;
+		grid[x][y] += 1;
+	}
+
+	@Override
+	protected void turnOff( int x, int y ) {
+		if ( grid[x][y] > 0 ) {
+			brightness -= 1;
+			grid[x][y] -= 1;
 		}
 	}
 
-	public int getBrightness() {
-		return brightness;
+	@Override
+	protected void toggle( int x, int y ) {
+		brightness += 2;
+		grid[x][y] += 2;
 	}
 }

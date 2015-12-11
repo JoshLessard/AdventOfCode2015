@@ -1,6 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
-public class OnOffLightGrid implements LightGrid {
+public class OnOffLightGrid extends LightGrid {
 	
 	private boolean[][] grid;
 	private int numberOfLitLights;
@@ -14,28 +14,24 @@ public class OnOffLightGrid implements LightGrid {
 	}
 
 	@Override
-	public void changeLights( Command command, Point topLeft, Point bottomRight ) {
-		for ( int x = topLeft.x; x <= bottomRight.x; ++x ) {
-			for ( int y = topLeft.y; y <= bottomRight.y; ++y ) {
-				switch ( command ) {
-					case TURN_ON:
-						if ( grid[x][y] == false ) {
-							numberOfLitLights += 1;
-						}
-						grid[x][y] = true;
-						break;
-					case TURN_OFF:
-						if ( grid[x][y] == true ) {
-							numberOfLitLights -= 1;
-						}
-						grid[x][y] = false;
-						break;
-					case TOGGLE:
-						numberOfLitLights += grid[x][y] == true ? -1 : 1;
-						grid[x][y] = ! grid[x][y];
-						break;
-				}
-			}
+	protected void turnOn( int x, int y ) {
+		if ( grid[x][y] == false ) {
+			numberOfLitLights += 1;
 		}
+		grid[x][y] = true;
+	}
+
+	@Override
+	protected void turnOff( int x, int y ) {
+		if ( grid[x][y] == true ) {
+			numberOfLitLights -= 1;
+		}
+		grid[x][y] = false;
+	}
+
+	@Override
+	protected void toggle( int x, int y ) {
+		numberOfLitLights += grid[x][y] == true ? -1 : 1;
+		grid[x][y] = ! grid[x][y];
 	}
 }

@@ -23,99 +23,62 @@ public class OnOffLightGridTest {
 	}
 	
 	@Test
-	public void turningOn1x1GridTurnsOn1Light() {
+	public void turningOnUnlitLightTurnsOn1Light() {
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x, y ) );
+		grid.turnOn( x, y );
 		assertEquals( 1, grid.getNumberOfLitLights() );
 	}
 	
 	@Test
-	public void turningOn2x2GridTurnsOn4Lights() {
+	public void turningOnLitLightDoesNothing() {
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 1, y + 1 ) );
-		assertEquals( 4, grid.getNumberOfLitLights() );
+		grid.turnOn( x, y );
+		grid.turnOn( x, y );
+		assertEquals( 1, grid.getNumberOfLitLights() );
 	}
 	
 	@Test
-	public void turningOnLightsThatAreAlreadyOnDoesNotDoubleCount() {
-		int x = getRandomCoordinate();
-		int y = getRandomCoordinate();
-		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 5, y + 5 ) );
-		assertEquals( 36, grid.getNumberOfLitLights() );
-		
-		grid.changeLights( Command.TURN_ON, new Point( x + 3, y + 3 ), new Point( x + 6, y + 5 ) );
-		assertEquals( 39, grid.getNumberOfLitLights() );
-	}
-	
-	@Test
-	public void turningOff1x1GridTurnsOff1Light() {
+	public void turningOffLitLightTurnsOff1Light() {
 		turnOnAllLights();
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_OFF, new Point( x, y ), new Point( x, y ) );
+		grid.turnOff( x, y );
 		assertEquals( ROWS * COLUMNS - 1, grid.getNumberOfLitLights() );
 	}
 	
 	@Test
-	public void turningOff2x2GridTurnsOff4Lights() {
+	public void turningOffUnlitLightDoesNothing() {
+		turnOnAllLights();
+		int x = getRandomCoordinate();
+		int y = getRandomCoordinate();
+
+		grid.turnOff( x, y );
+		grid.turnOff( x, y );
+		assertEquals( ROWS * COLUMNS - 1, grid.getNumberOfLitLights() );
+	}
+	
+	@Test
+	public void togglingUnlitLightTurnsOn1Light() {
+		int x = getRandomCoordinate();
+		int y = getRandomCoordinate();
+		
+		grid.toggle( x, y );
+		assertEquals( 1, grid.getNumberOfLitLights() );
+	}
+	
+	@Test
+	public void togglingLitLightTurnsOff1Light() {
 		turnOnAllLights();
 		int x = getRandomCoordinate();
 		int y = getRandomCoordinate();
 		
-		grid.changeLights( Command.TURN_OFF, new Point( x, y ), new Point( x + 1, y + 1 ) );
-		assertEquals( ROWS * COLUMNS - 4, grid.getNumberOfLitLights() );
-	}
-	
-	@Test
-	public void turningOffLightsThatAreAlreadyOffDoesNotDoubleCount() {
-		turnOnAllLights();
-		int x = getRandomCoordinate();
-		int y = getRandomCoordinate();
-		
-		grid.changeLights( Command.TURN_OFF, new Point( x, y ), new Point( x + 5, y + 5 ) );
-		assertEquals( ROWS * COLUMNS - 36, grid.getNumberOfLitLights() );
-		
-		grid.changeLights( Command.TURN_OFF, new Point( x + 3, y + 3 ), new Point( x + 6, y + 5 ) );
-		assertEquals( ROWS * COLUMNS - 39, grid.getNumberOfLitLights() );
-	}
-	
-	@Test
-	public void toggling3x3GridOfLightsThatAreOffTurnsOn9Lights() {
-		int x = getRandomCoordinate();
-		int y = getRandomCoordinate();
-		
-		grid.changeLights( Command.TOGGLE, new Point( x, y ), new Point( x + 2, y + 2 ) );
-		assertEquals( 9, grid.getNumberOfLitLights() );
-	}
-	
-	@Test
-	public void toggling4x4GridOfLightsThatAreOnTurnsOff16Lights() {
-		int x = getRandomCoordinate();
-		int y = getRandomCoordinate();
-		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 10, y + 10 ) );
-		assertEquals( 121, grid.getNumberOfLitLights() );
-		
-		grid.changeLights( Command.TOGGLE, new Point( x, y ), new Point( x + 3, y + 3 ) );
-		assertEquals( 121 - 16, grid.getNumberOfLitLights() );
-	}
-	
-	@Test
-	public void togglingLightsTurnsLitLightsOffAndUnlitLightsOn() {
-		int x = getRandomCoordinate();
-		int y = getRandomCoordinate();
-		
-		grid.changeLights( Command.TURN_ON, new Point( x, y ), new Point( x + 4, y + 4 ) );
-		assertEquals( 25, grid.getNumberOfLitLights() );
-		
-		grid.changeLights( Command.TOGGLE, new Point( x, y ), new Point( x + 6, y + 6 ) );
-		assertEquals( 25 - 25 + 24, grid.getNumberOfLitLights() );
+		grid.toggle( x, y );
+		assertEquals( ROWS * COLUMNS - 1, grid.getNumberOfLitLights() );
 	}
 
 	private int getRandomCoordinate() {
