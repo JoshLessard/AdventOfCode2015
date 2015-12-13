@@ -17,7 +17,6 @@ public class Circuit {
 		directedEdges = new HashMap<>();
 	}
 	
-	// TODO: name?
 	public void addDirectedEdge( CircuitComponent source, CircuitComponent destination ) {
 		source = ensureComponentMappedByName( source );
 		destination = ensureComponentMappedByName( destination );
