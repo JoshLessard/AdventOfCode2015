@@ -29,4 +29,34 @@ public class ValueComponent implements CircuitComponent {
 	public int getOutputSignal() {
 		return outputSignal;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + name.hashCode();
+		result = prime * result + outputSignal;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		ValueComponent other = (ValueComponent) obj;
+		if (!name.equals(other.name)) {
+			return false;
+		}
+		if (outputSignal != other.outputSignal) {
+			return false;
+		}
+		return true;
+	}
 }

@@ -51,4 +51,34 @@ public abstract class Gate implements CircuitComponent {
 	}
 
 	protected abstract int createOutputSignal( List<Integer> inputSignals );
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + name.hashCode();
+		result = prime * result + requiredNumberOfInputSignals;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Gate other = (Gate) obj;
+		if (!name.equals(other.name)) {
+			return false;
+		}
+		if (requiredNumberOfInputSignals != other.requiredNumberOfInputSignals) {
+			return false;
+		}
+		return true;
+	}
 }
