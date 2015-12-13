@@ -1,5 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
+// TODO: Change me to a one-signal gate with shift specified in constructor
 public class RightShiftGate extends TwoInputGate {
 
 	public RightShiftGate( String name ) {
