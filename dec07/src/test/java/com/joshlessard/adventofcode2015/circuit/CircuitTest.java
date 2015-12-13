@@ -1,11 +1,19 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit;
 
-import static com.joshlessard.adventofcode2015.CircuitComponent.MAXIMUM_SIGNAL;
-import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
-import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
+import static com.joshlessard.adventofcode2015.circuit.CircuitComponent.MAXIMUM_SIGNAL;
+import static com.joshlessard.adventofcode2015.circuit.component.TestUtilities.generateRandomName;
+import static com.joshlessard.adventofcode2015.circuit.component.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.joshlessard.adventofcode2015.circuit.component.AndGate;
+import com.joshlessard.adventofcode2015.circuit.component.LeftShiftGate;
+import com.joshlessard.adventofcode2015.circuit.component.NotGate;
+import com.joshlessard.adventofcode2015.circuit.component.OrGate;
+import com.joshlessard.adventofcode2015.circuit.component.RightShiftGate;
+import com.joshlessard.adventofcode2015.circuit.component.ValueComponent;
+import com.joshlessard.adventofcode2015.circuit.component.Wire;
 
 public class CircuitTest {
 	

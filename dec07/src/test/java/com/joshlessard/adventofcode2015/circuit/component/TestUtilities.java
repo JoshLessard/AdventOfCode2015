@@ -1,6 +1,6 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit.component;
 
-import static com.joshlessard.adventofcode2015.CircuitComponent.MAXIMUM_SIGNAL;
+import static com.joshlessard.adventofcode2015.circuit.CircuitComponent.MAXIMUM_SIGNAL;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit;
 
 import static java.util.stream.Collectors.toList;
 

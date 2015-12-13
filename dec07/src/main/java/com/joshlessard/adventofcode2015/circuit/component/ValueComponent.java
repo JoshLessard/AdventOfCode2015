@@ -1,4 +1,6 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit.component;
+
+import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 
 public class ValueComponent implements CircuitComponent {
 

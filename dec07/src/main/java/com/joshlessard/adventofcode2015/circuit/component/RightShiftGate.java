@@ -1,4 +1,4 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit.component;
 
 // TODO: Change me to a one-signal gate with shift specified in constructor
 public class RightShiftGate extends TwoInputGate {

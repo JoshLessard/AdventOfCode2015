@@ -1,4 +1,4 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit.component;
 
 public class NotGate extends OneInputGate {
 

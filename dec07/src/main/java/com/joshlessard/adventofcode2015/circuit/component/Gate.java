@@ -1,7 +1,9 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.circuit.component;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 
 public abstract class Gate implements CircuitComponent {
 	
