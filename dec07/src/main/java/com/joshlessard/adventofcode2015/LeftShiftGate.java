@@ -1,9 +1,9 @@
 package com.joshlessard.adventofcode2015;
 
-public class AndGate extends TwoInputGate {
+public class LeftShiftGate extends TwoInputGate {
 
 	@Override
 	protected int createOutputSignal( int inputSignal1, int inputSignal2 ) {
-		return (inputSignal1 & inputSignal2) & MAXIMUM_SIGNAL;
+		return (inputSignal1 << inputSignal2) & MAXIMUM_SIGNAL;
 	}
 }

@@ -1,15 +1,15 @@
 package com.joshlessard.adventofcode2015;
 
-public class ValueComponent extends CircuitComponent {
+public class ValueComponent implements CircuitComponent {
 
-	private int signal;
+	private final int outputSignal;
 
-	public ValueComponent( int signal ) {
-		this.signal = signal;
+	public ValueComponent( int outputSignal ) {
+		this.outputSignal = outputSignal;
 	}
 
 	@Override
-	public void addInputSignal( int signal ) {
+	public void addInputSignal( int inputSignal ) {
 		throw new IllegalStateException();
 	}
 
@@ -20,6 +20,6 @@ public class ValueComponent extends CircuitComponent {
 
 	@Override
 	public int getOutputSignal() {
-		return signal;
+		return outputSignal;
 	}
 }

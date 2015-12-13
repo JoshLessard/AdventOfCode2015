@@ -1,6 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
-import static com.joshlessard.adventofcode2015.TestUtilities.getRandomSignal;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -8,13 +8,13 @@ import org.junit.Test;
 
 public class ValueComponentTest {
 	
-	private int randomSignal = getRandomSignal();
+	private int randomSignal = generateRandomSignal();
 	
 	private ValueComponent component = new ValueComponent( randomSignal );
 	
 	@Test( expected = IllegalStateException.class )
 	public void cannotAddInputSignals() {
-		component.addInputSignal( getRandomSignal() );
+		component.addInputSignal( generateRandomSignal() );
 	}
 	
 	@Test

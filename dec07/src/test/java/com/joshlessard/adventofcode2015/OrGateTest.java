@@ -6,23 +6,23 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class AndGateTest {
+public class OrGateTest {
 	
 	private int randomInputSignal1 = generateRandomSignal();
 	private int randomInputSignal2 = generateRandomSignal();
 	
-	private AndGate gate = new AndGate();
+	private OrGate gate = new OrGate();
 	
 	@Test
-	public void outputSignalIsBitwiseAndOf2InputSignals() {
+	public void outputSignalIsBitwiseOrOf2InputSignals() {
 		gate.addInputSignal( randomInputSignal1 );
 		gate.addInputSignal( randomInputSignal2 );
-		assertEquals( (randomInputSignal1 & randomInputSignal2) & MAXIMUM_SIGNAL, gate.getOutputSignal() );
-		assertEquals( (randomInputSignal1 & randomInputSignal2) & MAXIMUM_SIGNAL, gate.createOutputSignal( randomInputSignal1, randomInputSignal2 ) );
+		assertEquals( (randomInputSignal1 | randomInputSignal2) & MAXIMUM_SIGNAL, gate.getOutputSignal() );
+		assertEquals( (randomInputSignal1 | randomInputSignal2) & MAXIMUM_SIGNAL, gate.createOutputSignal( randomInputSignal1, randomInputSignal2 ) );
 	}
 	
 	@Test
 	public void handlesMostSignificantBitBeingSet() {
-		assertEquals( 0x8000, gate.createOutputSignal( 0x8000, 0x8000 ) );
+		assertEquals( 0x9000, gate.createOutputSignal( 0x8000, 0x1000 ) );
 	}
 }
