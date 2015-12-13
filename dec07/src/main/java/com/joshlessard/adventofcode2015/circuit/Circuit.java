@@ -2,10 +2,11 @@ package com.joshlessard.adventofcode2015.circuit;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.Lists;
 
 public class Circuit {
 	
@@ -44,7 +45,7 @@ public class Circuit {
 	}
 
 	private List<CircuitComponent> getDestinationComponents( CircuitComponent source ) {
-		return directedEdges.computeIfAbsent( source, k -> new ArrayList<>() );
+		return directedEdges.computeIfAbsent( source, k -> Lists.newArrayList() );
 	}
 
 	public CircuitComponent getComponentByName( String name ) {

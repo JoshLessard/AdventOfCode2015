@@ -2,10 +2,11 @@ package com.joshlessard.adventofcode2015;
 
 import static com.joshlessard.adventofcode2015.circuit.CircuitComponent.MAXIMUM_SIGNAL;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
+
+import com.google.common.collect.Lists;
 
 public class TestUtilities {
 	
@@ -37,7 +38,7 @@ public class TestUtilities {
 	}
 
 	public static List<Integer> generateRandomSignals( int numberOfSignals ) {
-		List<Integer> randomSignals = new ArrayList<>( numberOfSignals );
+		List<Integer> randomSignals = Lists.newArrayListWithCapacity( numberOfSignals );
 		for ( int i = 0; i < numberOfSignals; ++i ) {
 			randomSignals.add( generateRandomSignal() );
 		}

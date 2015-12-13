@@ -8,12 +8,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.javatuples.Pair;
 import org.junit.Test;
 
+import com.google.common.collect.Lists;
 import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 import com.joshlessard.adventofcode2015.circuit.component.NotGate;
 import com.joshlessard.adventofcode2015.circuit.component.Wire;
@@ -50,10 +50,12 @@ public class NotCommandParserTest {
 	}
 	
 	@Test
+	@SuppressWarnings("unchecked")
 	public void parsesNotCommandIntoExpectedCircuitEdges() {
-		List<Pair<CircuitComponent, CircuitComponent>> expectedEdges = new ArrayList<>();
-		expectedEdges.add( new Pair<>( new Wire( randomWireName1 ), new NotGate( "~~~not1" ) ) );
-		expectedEdges.add( new Pair<>( new NotGate( "~~~not1" ), new Wire( randomWireName2 ) ) );
+		List<Pair<CircuitComponent, CircuitComponent>> expectedEdges = Lists.newArrayList(
+			new Pair<>( new Wire( randomWireName1 ), new NotGate( "~~~not1" ) ),
+			new Pair<>( new NotGate( "~~~not1" ), new Wire( randomWireName2 ) )
+		);
 		
 		assertEquals( expectedEdges, parser.parse( randomNotCommand ) );
 	}

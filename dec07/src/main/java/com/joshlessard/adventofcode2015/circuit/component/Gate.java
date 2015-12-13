@@ -1,8 +1,8 @@
 package com.joshlessard.adventofcode2015.circuit.component;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 
 public abstract class Gate implements CircuitComponent {
@@ -14,7 +14,7 @@ public abstract class Gate implements CircuitComponent {
 	public Gate( String name, int requiredNumberOfInputSignals ) {
 		this.name = name;
 		this.requiredNumberOfInputSignals = requiredNumberOfInputSignals;
-		this.inputSignals = new ArrayList<>( requiredNumberOfInputSignals );
+		this.inputSignals = Lists.newArrayListWithCapacity( requiredNumberOfInputSignals );
 	}
 	
 	@Override
