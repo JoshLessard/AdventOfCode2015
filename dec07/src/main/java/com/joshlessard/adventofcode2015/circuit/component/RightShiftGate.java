@@ -1,14 +1,16 @@
 package com.joshlessard.adventofcode2015.circuit.component;
 
-// TODO: Change me to a one-signal gate with shift specified in constructor
-public class RightShiftGate extends TwoInputGate {
+public class RightShiftGate extends OneInputGate {
 
-	public RightShiftGate( String name ) {
+	private int bitShift;
+
+	public RightShiftGate( int bitShift, String name ) {
 		super( name );
+		this.bitShift = bitShift;
 	}
 
 	@Override
-	protected int createOutputSignal( int inputSignal1, int inputSignal2 ) {
-		return (inputSignal1 >> inputSignal2) & MAXIMUM_SIGNAL;
+	protected int createOutputSignal( int inputSignal ) {
+		return (inputSignal >> bitShift) & MAXIMUM_SIGNAL;
 	}
 }

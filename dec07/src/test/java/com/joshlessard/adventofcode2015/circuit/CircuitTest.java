@@ -69,23 +69,23 @@ public class CircuitTest {
 	@Test
 	public void testSampleInput() {
 		circuit.addDirectedEdge(
-			new ValueComponent( "~~value1", 123 ),
+			new ValueComponent( "~~~value1", 123 ),
 			new Wire( "x" )
 		);
 		circuit.addDirectedEdge(
-			new ValueComponent( "~~value2", 456 ),
+			new ValueComponent( "~~~value2", 456 ),
 			new Wire( "y" )
 		);
 		circuit.addDirectedEdge(
 			new Wire( "x" ),
-			new AndGate( "~~and1" )
+			new AndGate( "~~~and1" )
 		);
 		circuit.addDirectedEdge(
 			new Wire( "y" ),
-			new AndGate( "~~and1" )
+			new AndGate( "~~~and1" )
 		);
 		circuit.addDirectedEdge(
-			new AndGate( "~~and1" ),
+			new AndGate( "~~~and1" ),
 			new Wire( "d" )
 		);
 		circuit.addDirectedEdge(
@@ -102,26 +102,18 @@ public class CircuitTest {
 		);
 		circuit.addDirectedEdge(
 			new Wire( "x" ),
-			new LeftShiftGate( "~~~lshift1" ) 
+			new LeftShiftGate( 2, "~~~lshift1" ) 
 		);
 		circuit.addDirectedEdge(
-			new ValueComponent( "~~value3", 2 ),
-			new LeftShiftGate( "~~~lshift1" )
-		);
-		circuit.addDirectedEdge(
-			new LeftShiftGate( "~~~lshift1" ),
+			new LeftShiftGate( 2, "~~~lshift1" ),
 			new Wire( "f" )
 		);
 		circuit.addDirectedEdge(
 			new Wire( "y" ),
-			new RightShiftGate( "~~~rshift1" )
+			new RightShiftGate( 2, "~~~rshift1" )
 		);
 		circuit.addDirectedEdge(
-			new ValueComponent( "~~value4", 2 ),
-			new RightShiftGate( "~~~rshift1" )
-		);
-		circuit.addDirectedEdge(
-			new RightShiftGate( "~~~rshift1" ),
+			new RightShiftGate( 2, "~~~rshift1" ),
 			new Wire( "g" )
 		);
 		circuit.addDirectedEdge(

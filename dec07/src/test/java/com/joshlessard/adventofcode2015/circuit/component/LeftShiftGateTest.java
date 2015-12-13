@@ -10,31 +10,33 @@ import org.junit.Test;
 
 public class LeftShiftGateTest {
 	
-	private int randomInputSignal1 = generateRandomSignal();
-	private int randomInputSignal2 = generateRandomBitShift();
+	private int randomBitShift = generateRandomBitShift();
+	private int randomInputSignal = generateRandomSignal();
 	
-	private LeftShiftGate gate = new LeftShiftGate( generateRandomName() );
+	private LeftShiftGate gate = new LeftShiftGate( randomBitShift, generateRandomName() );
 	
 	@Test
 	public void outputSignalIsLeftInputSignalShiftedLeftByRightInputSignal() {
-		gate.addInputSignal( randomInputSignal1 );
-		gate.addInputSignal( randomInputSignal2 );
-		assertEquals( (randomInputSignal1 << randomInputSignal2) & MAXIMUM_SIGNAL, gate.getOutputSignal() );
-		assertEquals( (randomInputSignal1 << randomInputSignal2) & MAXIMUM_SIGNAL, gate.createOutputSignal( randomInputSignal1, randomInputSignal2 ) );
+		gate.addInputSignal( randomInputSignal );
+		assertEquals( (randomInputSignal << randomBitShift) & MAXIMUM_SIGNAL, gate.getOutputSignal() );
+		assertEquals( (randomInputSignal << randomBitShift) & MAXIMUM_SIGNAL, gate.createOutputSignal( randomInputSignal ) );
 	}
 	
 	@Test
 	public void handlesMostSignificantBitBeingSet() {
-		assertEquals( 0x8000, gate.createOutputSignal( 0x2000, 2 ) );
+		LeftShiftGate gate = new LeftShiftGate( 2, generateRandomName() );
+		assertEquals( 0x8000, gate.createOutputSignal( 0x2000 ) );
 	}
 	
 	@Test
 	public void setBitsLeftShiftedPastMostSignificantBitAreDropped() {
-		assertEquals( 0x9620, gate.createOutputSignal( 0x72c4, 3 ) );
+		LeftShiftGate gate = new LeftShiftGate( 3, generateRandomName() );
+		assertEquals( 0x9620, gate.createOutputSignal( 0x72c4 ) );
 	}
 	
 	@Test
 	public void leastSignificantBitsArePaddedWith0() {
-		assertEquals( 0x0010, gate.createOutputSignal( 0x0001, 4 ) );
+		LeftShiftGate gate = new LeftShiftGate( 4, generateRandomName() );
+		assertEquals( 0x0010, gate.createOutputSignal( 0x0001 ) );
 	}
 }
