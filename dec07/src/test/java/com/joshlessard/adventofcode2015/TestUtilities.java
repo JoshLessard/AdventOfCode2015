@@ -1,22 +1,31 @@
-package com.joshlessard.adventofcode2015.circuit.component;
+package com.joshlessard.adventofcode2015;
 
 import static com.joshlessard.adventofcode2015.circuit.CircuitComponent.MAXIMUM_SIGNAL;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class TestUtilities {
 	
 	private static final Random RANDOM = new Random();
 	
 	public static String generateRandomName() {
+		return generateRandomStringWithSupplier( () -> (char) (RANDOM.nextInt( 26 ) + 97) );
+	}
+
+	private static String generateRandomStringWithSupplier( Supplier<Character> characterSupplier ) {
 		int numberOfCharacters = RANDOM.nextInt( 6 ) + 5; // 5-10
 		StringBuilder builder = new StringBuilder();
 		for ( int i = 0; i < numberOfCharacters; ++i ) {
-			builder.append( (char) RANDOM.nextInt( Character.MAX_VALUE ) );
+			builder.append( characterSupplier.get() );
 		}
 		return builder.toString();
+	}
+	
+	public static String generateRandomString() {
+		return generateRandomStringWithSupplier( () -> (char) RANDOM.nextInt( Character.MAX_CODE_POINT ) );
 	}
 
 	public static int generateRandomSignal() {

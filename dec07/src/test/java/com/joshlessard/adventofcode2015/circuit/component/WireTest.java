@@ -1,7 +1,7 @@
 package com.joshlessard.adventofcode2015.circuit.component;
 
-import static com.joshlessard.adventofcode2015.circuit.component.TestUtilities.generateRandomName;
-import static com.joshlessard.adventofcode2015.circuit.component.TestUtilities.generateRandomSignal;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
