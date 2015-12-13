@@ -1,5 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +10,7 @@ public class WireTest {
 	
 	private int randomInputSignal = generateRandomSignal();
 	
-	private Wire wire = new Wire();
+	private Wire wire = new Wire( generateRandomName() );
 	
 	@Test
 	public void outputSignalIsInputSignal() {

@@ -1,6 +1,7 @@
 package com.joshlessard.adventofcode2015;
 
 import static com.joshlessard.adventofcode2015.CircuitComponent.MAXIMUM_SIGNAL;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignals;
 import static org.junit.Assert.assertEquals;
@@ -17,14 +18,20 @@ import org.junit.Test;
 
 public class GateTest {
 	
+	private String randomName = generateRandomName();
 	private List<Integer> randomInputSignals = generateRandomSignals();
 	private int randomOutputSignal = generateRandomSignal();
 	
-	private Gate gate = spy( new TestingGate( randomInputSignals.size() ) );
+	private Gate gate = spy( new TestingGate( randomName, randomInputSignals.size() ) );
 	
 	@Before
 	public void setUp() {
 		doReturn( randomOutputSignal ).when( gate ).createOutputSignal( randomInputSignals );
+	}
+	
+	@Test
+	public void nameIsNamePassedToConstructor() {
+		assertEquals( randomName, gate.getName() );
 	}
 	
 	@Test( expected = IllegalStateException.class )
@@ -78,8 +85,8 @@ public class GateTest {
 	
 	private static class TestingGate extends Gate {
 
-		public TestingGate( int requiredNumberOfInputSignals ) {
-			super( requiredNumberOfInputSignals );
+		public TestingGate( String name, int requiredNumberOfInputSignals ) {
+			super( name, requiredNumberOfInputSignals );
 		}
 
 		@Override

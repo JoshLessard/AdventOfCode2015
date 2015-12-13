@@ -9,6 +9,15 @@ import java.util.Random;
 public class TestUtilities {
 	
 	private static final Random RANDOM = new Random();
+	
+	public static String generateRandomName() {
+		int numberOfCharacters = RANDOM.nextInt( 6 ) + 5; // 5-10
+		StringBuilder builder = new StringBuilder();
+		for ( int i = 0; i < numberOfCharacters; ++i ) {
+			builder.append( (char) RANDOM.nextInt( Character.MAX_VALUE ) );
+		}
+		return builder.toString();
+	}
 
 	public static int generateRandomSignal() {
 		return RANDOM.nextInt( MAXIMUM_SIGNAL + 1 );

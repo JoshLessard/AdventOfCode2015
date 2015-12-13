@@ -1,6 +1,7 @@
 package com.joshlessard.adventofcode2015;
 
 import static com.joshlessard.adventofcode2015.CircuitComponent.MAXIMUM_SIGNAL;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +12,7 @@ public class AndGateTest {
 	private int randomInputSignal1 = generateRandomSignal();
 	private int randomInputSignal2 = generateRandomSignal();
 	
-	private AndGate gate = new AndGate();
+	private AndGate gate = new AndGate( generateRandomName() );
 	
 	@Test
 	public void outputSignalIsBitwiseAndOf2InputSignals() {

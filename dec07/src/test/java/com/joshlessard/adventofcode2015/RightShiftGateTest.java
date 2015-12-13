@@ -2,6 +2,7 @@ package com.joshlessard.adventofcode2015;
 
 import static com.joshlessard.adventofcode2015.CircuitComponent.MAXIMUM_SIGNAL;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomBitShift;
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +13,7 @@ public class RightShiftGateTest {
 	private int randomInputSignal1 = generateRandomSignal();
 	private int randomInputSignal2 = generateRandomBitShift();
 	
-	private RightShiftGate gate = new RightShiftGate();
+	private RightShiftGate gate = new RightShiftGate( generateRandomName() );
 	
 	@Test
 	public void outputSignalIsLeftInputSignalShiftedRightByRightInputSignal() {

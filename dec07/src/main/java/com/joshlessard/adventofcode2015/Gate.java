@@ -5,12 +5,19 @@ import java.util.List;
 
 public abstract class Gate implements CircuitComponent {
 	
+	private final String name;
 	private final int requiredNumberOfInputSignals;
 	private final List<Integer> inputSignals;
 	
-	public Gate( int requiredNumberOfInputSignals ) {
+	public Gate( String name, int requiredNumberOfInputSignals ) {
+		this.name = name;
 		this.requiredNumberOfInputSignals = requiredNumberOfInputSignals;
 		this.inputSignals = new ArrayList<>( requiredNumberOfInputSignals );
+	}
+	
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override

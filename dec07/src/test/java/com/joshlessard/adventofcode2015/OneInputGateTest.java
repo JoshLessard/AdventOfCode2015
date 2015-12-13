@@ -1,5 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignals;
 import static org.junit.Assert.assertEquals;
@@ -31,6 +32,10 @@ public class OneInputGateTest {
 	}
 	
 	private static class TestingOneInputGate extends OneInputGate {
+
+		public TestingOneInputGate() {
+			super( generateRandomName() );
+		}
 
 		@Override
 		protected int createOutputSignal( int inputSignal ) {

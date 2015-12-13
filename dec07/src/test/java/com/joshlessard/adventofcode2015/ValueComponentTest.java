@@ -1,5 +1,6 @@
 package com.joshlessard.adventofcode2015;
 
+import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomName;
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomSignal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,9 +9,15 @@ import org.junit.Test;
 
 public class ValueComponentTest {
 	
+	private String randomName = generateRandomName();
 	private int randomSignal = generateRandomSignal();
 	
-	private ValueComponent component = new ValueComponent( randomSignal );
+	private ValueComponent component = new ValueComponent( randomName, randomSignal );
+	
+	@Test
+	public void nameIsNamePassedToConstructor() {
+		assertEquals( randomName, component.getName() );
+	}
 	
 	@Test( expected = IllegalStateException.class )
 	public void cannotAddInputSignals() {

@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class TwoInputGate extends Gate {
 	
-	public TwoInputGate() {
-		super( 2 );
+	public TwoInputGate( String name ) {
+		super( name, 2 );
 	}
 	
 	@Override
