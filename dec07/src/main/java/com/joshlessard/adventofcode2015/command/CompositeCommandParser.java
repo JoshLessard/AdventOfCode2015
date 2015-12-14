@@ -24,6 +24,6 @@ public class CompositeCommandParser {
 				return commandParser;
 			}
 		}
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException( "No matching parser for: " + input );
 	}
 }
