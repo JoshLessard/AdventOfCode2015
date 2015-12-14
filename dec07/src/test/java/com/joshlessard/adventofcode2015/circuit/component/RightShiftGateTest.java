@@ -13,7 +13,7 @@ public class RightShiftGateTest {
 	private int randomBitShift = generateRandomBitShift();
 	private int randomInputSignal = generateRandomSignal();
 	
-	private RightShiftGate gate = new RightShiftGate( randomBitShift, generateRandomName() );
+	private RightShiftGate gate = new RightShiftGate( generateRandomName(), randomBitShift );
 	
 	@Test
 	public void outputSignalIsLeftInputSignalShiftedRightByRightInputSignal() {
@@ -24,7 +24,7 @@ public class RightShiftGateTest {
 	
 	@Test
 	public void mostSignificantBitsArePaddedWith0() {
-		RightShiftGate gate = new RightShiftGate( 3, generateRandomName() );
+		RightShiftGate gate = new RightShiftGate( generateRandomName(), 3 );
 		assertEquals( 0x1000, gate.createOutputSignal( 0x8000 ) );
 	}
 }

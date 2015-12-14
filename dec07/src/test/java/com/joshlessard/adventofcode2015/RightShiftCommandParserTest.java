@@ -45,8 +45,8 @@ public class RightShiftCommandParserTest {
 	@SuppressWarnings("unchecked")
 	public void parsesRightShiftCommandIntoExpectedEdges() {
 		List<Pair<CircuitComponent, CircuitComponent>> expectedEdges = Lists.newArrayList(
-			new Pair<>( new Wire( randomWireName1 ), new RightShiftGate( randomBitShift, "~~~rshift1" ) ),
-			new Pair<>( new RightShiftGate( randomBitShift, "~~~rshift1" ), new Wire( randomWireName2 ) )
+			new Pair<>( new Wire( randomWireName1 ), new RightShiftGate( "~~~rshift1", randomBitShift ) ),
+			new Pair<>( new RightShiftGate( "~~~rshift1", randomBitShift ), new Wire( randomWireName2 ) )
 		);
 		
 		assertEquals( expectedEdges, parser.generateEdges( randomRightShiftCommand ) );

@@ -23,7 +23,7 @@ public class LeftShiftCommandParser extends RegexCommandParser {
 	@Override
 	protected List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
 		int bitShift = Integer.parseInt( matcher.group( 2 ) );
-		LeftShiftGate leftShiftGate = new LeftShiftGate( bitShift, "~~~lshift" + nextSuffix++ );
+		LeftShiftGate leftShiftGate = new LeftShiftGate( "~~~lshift" + nextSuffix++, bitShift );
 		return ImmutableList.of(
 			new Pair<>( new Wire( matcher.group( 1 ) ), leftShiftGate ),
 			new Pair<>( leftShiftGate, new Wire( matcher.group( 3 ) ) )

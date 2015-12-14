@@ -102,18 +102,18 @@ public class CircuitTest {
 		);
 		circuit.addDirectedEdge(
 			new Wire( "x" ),
-			new LeftShiftGate( 2, "~~~lshift1" ) 
+			new LeftShiftGate( "~~~lshift1", 2 ) 
 		);
 		circuit.addDirectedEdge(
-			new LeftShiftGate( 2, "~~~lshift1" ),
+			new LeftShiftGate( "~~~lshift1", 2 ),
 			new Wire( "f" )
 		);
 		circuit.addDirectedEdge(
 			new Wire( "y" ),
-			new RightShiftGate( 2, "~~~rshift1" )
+			new RightShiftGate( "~~~rshift1", 2 )
 		);
 		circuit.addDirectedEdge(
-			new RightShiftGate( 2, "~~~rshift1" ),
+			new RightShiftGate( "~~~rshift1", 2 ),
 			new Wire( "g" )
 		);
 		circuit.addDirectedEdge(

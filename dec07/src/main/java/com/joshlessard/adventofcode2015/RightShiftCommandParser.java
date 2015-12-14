@@ -23,7 +23,7 @@ public class RightShiftCommandParser extends RegexCommandParser {
 	@Override
 	protected List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
 		int bitShift = Integer.parseInt( matcher.group( 2 ) );
-		RightShiftGate rightShiftGate = new RightShiftGate( bitShift, "~~~rshift" + nextSuffix++ );
+		RightShiftGate rightShiftGate = new RightShiftGate( "~~~rshift" + nextSuffix++, bitShift );
 		return ImmutableList.of(
 			new Pair<>( new Wire( matcher.group( 1 ) ), rightShiftGate ),
 			new Pair<>( rightShiftGate, new Wire( matcher.group( 3 ) ) )

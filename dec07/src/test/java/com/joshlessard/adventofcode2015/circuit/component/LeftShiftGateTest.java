@@ -13,7 +13,7 @@ public class LeftShiftGateTest {
 	private int randomBitShift = generateRandomBitShift();
 	private int randomInputSignal = generateRandomSignal();
 	
-	private LeftShiftGate gate = new LeftShiftGate( randomBitShift, generateRandomName() );
+	private LeftShiftGate gate = new LeftShiftGate( generateRandomName(), randomBitShift );
 	
 	@Test
 	public void outputSignalIsLeftInputSignalShiftedLeftByRightInputSignal() {
@@ -24,19 +24,19 @@ public class LeftShiftGateTest {
 	
 	@Test
 	public void handlesMostSignificantBitBeingSet() {
-		LeftShiftGate gate = new LeftShiftGate( 2, generateRandomName() );
+		LeftShiftGate gate = new LeftShiftGate( generateRandomName(), 2 );
 		assertEquals( 0x8000, gate.createOutputSignal( 0x2000 ) );
 	}
 	
 	@Test
 	public void setBitsLeftShiftedPastMostSignificantBitAreDropped() {
-		LeftShiftGate gate = new LeftShiftGate( 3, generateRandomName() );
+		LeftShiftGate gate = new LeftShiftGate( generateRandomName(), 3 );
 		assertEquals( 0x9620, gate.createOutputSignal( 0x72c4 ) );
 	}
 	
 	@Test
 	public void leastSignificantBitsArePaddedWith0() {
-		LeftShiftGate gate = new LeftShiftGate( 4, generateRandomName() );
+		LeftShiftGate gate = new LeftShiftGate( generateRandomName(), 4 );
 		assertEquals( 0x0010, gate.createOutputSignal( 0x0001 ) );
 	}
 }

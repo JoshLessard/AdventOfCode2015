@@ -4,7 +4,7 @@ public class LeftShiftGate extends OneInputGate {
 
 	private int bitShift;
 
-	public LeftShiftGate( int bitShift, String name ) {
+	public LeftShiftGate( String name, int bitShift ) {
 		super( name );
 		this.bitShift = bitShift;
 	}
