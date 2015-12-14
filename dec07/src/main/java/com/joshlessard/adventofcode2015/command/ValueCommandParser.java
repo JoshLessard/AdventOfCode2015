@@ -16,7 +16,7 @@ public class ValueCommandParser extends RegexCommandParser {
 	
 	private int nextSuffix = 1;
 
-	protected ValueCommandParser() {
+	public ValueCommandParser() {
 		super( PATTERN );
 	}
 

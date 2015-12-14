@@ -16,7 +16,7 @@ public class RightShiftCommandParser extends RegexCommandParser {
 	
 	private int nextSuffix = 1;
 
-	protected RightShiftCommandParser() {
+	public RightShiftCommandParser() {
 		super( PATTERN );
 	}
 

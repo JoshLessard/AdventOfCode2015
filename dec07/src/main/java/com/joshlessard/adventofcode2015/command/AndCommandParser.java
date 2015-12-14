@@ -18,7 +18,7 @@ public class AndCommandParser extends RegexCommandParser {
 	private int nextAndSuffix = 1;
 	private int nextValueSuffix = 1;
 
-	protected AndCommandParser() {
+	public AndCommandParser() {
 		super( PATTERN );
 	}
 
