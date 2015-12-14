@@ -1,4 +1,4 @@
-package com.joshlessard.adventofcode2015;
+package com.joshlessard.adventofcode2015.command;
 
 import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomString;
 import static org.junit.Assert.assertEquals;
