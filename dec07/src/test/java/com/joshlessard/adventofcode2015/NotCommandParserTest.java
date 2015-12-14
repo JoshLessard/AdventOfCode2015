@@ -5,8 +5,6 @@ import static com.joshlessard.adventofcode2015.TestUtilities.generateRandomStrin
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
 
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class NotCommandParserTest {
 	private String randomWireName2 = generateRandomName();
 	private String randomNotCommand = "NOT " + randomWireName1 + " -> " + randomWireName2;
 	
-	private NotCommandParser parser = spy( new NotCommandParser() );
+	private NotCommandParser parser = new NotCommandParser();
 	
 	@Test
 	public void doesNotMatchRandomString() {
@@ -41,14 +39,6 @@ public class NotCommandParserTest {
 		assertTrue( parser.matches( randomNotCommand ) );
 	}
 	
-	@Test( expected = IllegalArgumentException.class )
-	public void cannotParseACommandThatThisParserDoesNotMatch() {
-		String randomInput = generateRandomString();
-		doReturn( false ).when( parser ).matches( randomInput );
-		
-		parser.parse( randomInput );
-	}
-	
 	@Test
 	@SuppressWarnings("unchecked")
 	public void parsesNotCommandIntoExpectedCircuitEdges() {
@@ -57,13 +47,13 @@ public class NotCommandParserTest {
 			new Pair<>( new NotGate( "~~~not1" ), new Wire( randomWireName2 ) )
 		);
 		
-		assertEquals( expectedEdges, parser.parse( randomNotCommand ) );
+		assertEquals( expectedEdges, parser.generateEdges( randomNotCommand ) );
 	}
 	
 	@Test
 	public void eachParseGeneratesUniquelyNamedNotGateWithIncreasingSuffix() {
-		List<Pair<CircuitComponent, CircuitComponent>> edges1 = parser.parse( randomNotCommand );
-		List<Pair<CircuitComponent, CircuitComponent>> edges2 = parser.parse( randomNotCommand );
+		List<Pair<CircuitComponent, CircuitComponent>> edges1 = parser.generateEdges( randomNotCommand );
+		List<Pair<CircuitComponent, CircuitComponent>> edges2 = parser.generateEdges( randomNotCommand );
 
 		assertEquals( "~~~not1", edges1.get( 0 ).getValue1().getName() );
 		assertEquals( "~~~not1", edges1.get( 1 ).getValue0().getName() );

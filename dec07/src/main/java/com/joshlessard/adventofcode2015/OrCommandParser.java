@@ -8,13 +8,13 @@ import org.javatuples.Pair;
 
 import com.google.common.collect.ImmutableList;
 import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
-import com.joshlessard.adventofcode2015.circuit.component.NotGate;
+import com.joshlessard.adventofcode2015.circuit.component.OrGate;
 import com.joshlessard.adventofcode2015.circuit.component.Wire;
 
-public class NotCommandParser extends CommandParser {
+public class OrCommandParser extends CommandParser {
 	
 	private static final Pattern PATTERN = Pattern.compile(
-		"NOT ([a-z]+) -> ([a-z]+)"
+		"([a-z]+) OR ([a-z]+) -> ([a-z]+)"
 	);
 	
 	private int nextSuffix = 1;
@@ -36,10 +36,11 @@ public class NotCommandParser extends CommandParser {
 	}
 
 	private List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
-		NotGate notGate = new NotGate( "~~~not" + nextSuffix++ );
+		OrGate orGate = new OrGate( "~~~or" + nextSuffix++ );
 		return ImmutableList.of(
-			new Pair<>( new Wire( matcher.group( 1 ) ), notGate ),
-			new Pair<>( notGate, new Wire( matcher.group( 2 ) ) )
+			new Pair<>( new Wire( matcher.group( 1 ) ), orGate ),
+			new Pair<>( new Wire( matcher.group( 2 ) ), orGate ),
+			new Pair<>( orGate, new Wire( matcher.group( 3 ) ) )
 		);
 	}
 }
