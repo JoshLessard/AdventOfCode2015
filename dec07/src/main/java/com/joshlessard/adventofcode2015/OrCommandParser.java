@@ -2,7 +2,6 @@ package com.joshlessard.adventofcode2015;
 
 import java.util.List;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.javatuples.Pair;
 
@@ -11,31 +10,18 @@ import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 import com.joshlessard.adventofcode2015.circuit.component.OrGate;
 import com.joshlessard.adventofcode2015.circuit.component.Wire;
 
-public class OrCommandParser extends CommandParser {
+public class OrCommandParser extends RegexCommandParser {
 	
-	private static final Pattern PATTERN = Pattern.compile(
-		"([a-z]+) OR ([a-z]+) -> ([a-z]+)"
-	);
+	private static final String PATTERN = "([a-z]+) OR ([a-z]+) -> ([a-z]+)";
 	
 	private int nextSuffix = 1;
-
-	public boolean matches( String input ) {
-		return PATTERN.matcher( input ).matches();
-	}
-
-	@Override
-	protected List<Pair<CircuitComponent, CircuitComponent>> generateEdges( String input ) {
-		Matcher matcher = createMatcher( input );
-		return generateEdges( matcher );
+	
+	public OrCommandParser() {
+		super( PATTERN );
 	}
 	
-	private Matcher createMatcher( String input ) {
-		Matcher matcher = PATTERN.matcher( input );
-		matcher.matches();
-		return matcher;
-	}
-
-	private List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
+	@Override
+	protected List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
 		OrGate orGate = new OrGate( "~~~or" + nextSuffix++ );
 		return ImmutableList.of(
 			new Pair<>( new Wire( matcher.group( 1 ) ), orGate ),
