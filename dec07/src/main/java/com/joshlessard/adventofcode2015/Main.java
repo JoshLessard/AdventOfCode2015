@@ -23,17 +23,22 @@ import com.joshlessard.adventofcode2015.command.TunnelCommandParser;
 public class Main {
 	
 	public static void main( String[] args ) throws FileNotFoundException, IOException {
-		Circuit circuit = createCircuit();
+		Circuit circuit = createCircuit( getInput( 44430 ) );
 		circuit.complete();
-
-		System.out.println( "a: " + circuit.getComponentByName( "a" ).getOutputSignal() );
+		int wireAOutputSignal = circuit.getComponentByName( "a" ).getOutputSignal();
+		System.out.println( "Part A: " + wireAOutputSignal );
+		
+		circuit = createCircuit( getInput( wireAOutputSignal ) );
+		circuit.complete();
+		wireAOutputSignal = circuit.getComponentByName( "a" ).getOutputSignal();
+		System.out.println( "Part B: " + wireAOutputSignal );
 	}
 	
-	private static Circuit createCircuit() throws FileNotFoundException, IOException {
+	private static Circuit createCircuit( List<String> commands ) throws FileNotFoundException, IOException {
 		Circuit circuit = new Circuit();
 		CompositeCommandParser parser = createCommandParser();
-		for ( String input : getInput() ) {
-			List<Pair<CircuitComponent, CircuitComponent>> edges = parser.parse( input );
+		for ( String command : commands ) {
+			List<Pair<CircuitComponent, CircuitComponent>> edges = parser.parse( command );
 			for ( Pair<CircuitComponent, CircuitComponent> edge : edges ) {
 				circuit.addDirectedEdge( edge.getValue0(), edge.getValue1() );
 			}
@@ -41,9 +46,12 @@ public class Main {
 		return circuit;
 	}
 
-	private static List<String> getInput() throws FileNotFoundException, IOException {
+	private static List<String> getInput( int wireBInputSignal ) throws FileNotFoundException, IOException {
 		try ( BufferedReader reader = new BufferedReader( new FileReader( "src/main/resources/input.txt" ) ) ) {
-			return reader.lines().collect( toList() );
+			return reader
+				.lines()
+				.map( l -> l.replace( "{wireBInput}", Integer.toString( wireBInputSignal ) ) )
+				.collect( toList() );
 		}
 	}
 	
