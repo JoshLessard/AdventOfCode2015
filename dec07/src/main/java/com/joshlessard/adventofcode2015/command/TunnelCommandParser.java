@@ -10,22 +10,28 @@ import com.joshlessard.adventofcode2015.circuit.CircuitComponent;
 import com.joshlessard.adventofcode2015.circuit.component.ValueComponent;
 import com.joshlessard.adventofcode2015.circuit.component.Wire;
 
-public class ValueCommandParser extends RegexCommandParser {
+public class TunnelCommandParser extends RegexCommandParser {
 	
-	private static final String PATTERN = "(\\d+) -> ([a-z]+)";
+	private static final String PATTERN = "([a-z]+|\\d+) -> ([a-z]+)";
 	
 	private int nextSuffix = 1;
 
-	public ValueCommandParser() {
+	public TunnelCommandParser() {
 		super( PATTERN );
 	}
 
 	@Override
 	protected List<Pair<CircuitComponent, CircuitComponent>> generateEdges( Matcher matcher ) {
-		int outputSignal = Integer.parseInt( matcher.group( 1 ) );
 		String wireName = matcher.group( 2 );
 		return ImmutableList.of(
-			new Pair<>( new ValueComponent( "~~~value" + nextSuffix++, outputSignal ), new Wire( wireName ) )
+			new Pair<>( createSourceComponent( matcher ), new Wire( wireName ) )
 		);
+	}
+	
+	private CircuitComponent createSourceComponent( Matcher matcher ) {
+		String outputSignal = matcher.group( 1 );
+		return Character.isDigit( outputSignal.charAt( 0 ) )
+			? new ValueComponent( "~~~value" + nextSuffix++, Integer.parseInt( outputSignal ) )
+			: new Wire( outputSignal );
 	}
 }
